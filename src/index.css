@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark-bg: #0a0a0a;
+  --color-accent-cian: #00f2ff;
+  --color-accent-violet: #7000ff;
+}
+
+body {
+  background-color: var(--color-dark-bg);
+  color: white;
+  margin: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+html {
+  scroll-behavior: smooth;
+  /* El scroll-padding evita que el Navbar tape el título de la sección */
+  scroll-padding-top: 80px; 
+}
