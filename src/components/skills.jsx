@@ -21,7 +21,7 @@ const bounceTransition = {
 
 export default function TechStack() {
   return (
-    <section className="py-24 bg-[#0a0a0a] overflow-hidden">
+    <section className="py-24 bg-[#0a0a0a] overflow-hidden" id="skills">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-bold text-white mb-16">
           Ecosistema <span className="text-accent-cian">Tecnológico</span>
