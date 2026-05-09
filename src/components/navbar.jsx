@@ -29,7 +29,7 @@ export default function Navbar() {
 
         {/* BOTÓN CV */}
         <a 
-          href="/CV_Antonio_Azaf.pdf" 
+          href="/CV_Antonio_R_Azaf:N.pdf" 
           download="CV_Antonio_Azaf.pdf"
           className="px-6 py-2 bg-gradient-to-r from-accent-cian to-accent-violet rounded-full text-white font-bold shadow-lg hover:shadow-accent-cian/20 transition-all text-sm"
         >
