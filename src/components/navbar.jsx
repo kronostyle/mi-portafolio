@@ -1,14 +1,19 @@
+import { useLanguage } from '../LanguageContext';
+
 export default function Navbar() {
-  const navLinks = [
-    { name: "Inicio", href: "#inicio" },
-    { name: "Proyectos", href: "#proyectos" },
-    { name: "Habilidades", href: "#skills" }, // Asegúrate de que tu componente Skills tenga id="skills"
-    { name: "Contacto", href: "#contacto" },
+  const { language, t, toggleLanguage } = useLanguage();
+
+  const navlinks = [
+    { name: t.nav_home || "Inicio", href: "#inicio" },
+    { name: t.nav_projects, href: "#proyectos" },
+    { name: t.nav_skills, href: "#skills" },
+    { name: t.nav_contact || "Contacto", href: "#contacto" },
   ];
 
   return (
     <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-white/10 bg-dark-bg/80">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        
         {/* LOGO */}
         <span className="text-2xl font-bold bg-gradient-to-r from-accent-cian to-accent-violet bg-clip-text text-transparent">
           Antonio.dev
@@ -16,10 +21,10 @@ export default function Navbar() {
 
         {/* LINKS DINÁMICOS */}
         <div className="hidden md:flex gap-8 text-sm font-medium">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
+          {navlinks.map((link) => (
+            <a 
+              key={link.name} 
+              href={link.href} 
               className="text-gray-300 hover:text-accent-cian transition-colors"
             >
               {link.name}
@@ -27,14 +32,25 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* BOTÓN CV */}
-        <a 
-          href="/CV_Antonio_R_Azaf_N.pdf" 
-          download="CV_Antonio_R_Azaf_N.pdf"
-          className="px-6 py-2 bg-gradient-to-r from-accent-cian to-accent-violet rounded-full text-white font-bold shadow-lg hover:shadow-accent-cian/20 transition-all text-sm"
-        >
-         Descargar CV
-        </a>
+        {/* BOTONES LADO DERECHO */}
+        <div className="flex items-center gap-4">
+          {/* BOTÓN DE IDIOMA */}
+          <button 
+            onClick={toggleLanguage}
+            className="bg-white/5 border border-white/10 px-3 py-1 rounded-md text-xs font-bold hover:bg-white/10 transition-all text-white"
+          >
+            {language === 'es' ? 'EN' : 'ES'}
+          </button>
+
+          {/* BOTÓN CV */}
+          <a 
+            href="/CV_Antonio_R_Azaf_N.pdf" 
+            download 
+            className="px-4 py-2 bg-gradient-to-r from-accent-cian to-accent-violet rounded-full text-white font-bold text-xs shadow-lg hover:shadow-accent-cian/20 transition-all"
+          >
+            {t.download_cv}
+          </a>
+        </div>
       </div>
     </nav>
   );

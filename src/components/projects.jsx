@@ -29,7 +29,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1507206130118-b5907f817163?q=80&w=1000&auto=format&fit=crop"},
   {
     title: "HealthConnect AI",
-    company: "Sector Salud (Ficticio)",
+    company: "Sector Salud",
     size: "md:col-span-1",
     tags: ["Next.js", "TypeScript", "HIPAA"],
     description: "Sistema de gestión hospitalaria con dashboard interactivo para monitoreo de pacientes y telemedicina segura.",
@@ -38,7 +38,7 @@ const projects = [
   },
   {
     title: "Creative Studio Portfolio",
-    company: "Freelance Designer (Ficticio)",
+    company: "Freelance Designer",
     size: "md:col-span-2",
     tags: ["Framer Motion", "GSAP", "Tailwind"],
     description: "Experiencia visual inmersiva para creativos. Animaciones pixel-perfect y carga optimizada de activos de alta resolución.",
