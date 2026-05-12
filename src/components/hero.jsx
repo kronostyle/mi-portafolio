@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "../LanguageContext"; 
 
 export default function Hero() {
+  // CORRECCIÓN: Agregamos "language" a la extracción
+  const { t, language } = useLanguage(); 
+
   return (
     <section id="inicio" className="relative min-h-screen pt-20 flex items-center bg-[#0a0a0a] overflow-hidden">
       
@@ -18,27 +22,32 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
         >
           <span className="text-sm font-bold text-accent-cian uppercase tracking-widest bg-accent-cian/10 px-4 py-1 rounded-full border border-accent-cian/20 inline-block mb-6">
-            Systems Engineer & Web Specialist
+            {t.hero_subtitle}
           </span>
+
           <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
-            Ingeniería
- <br />
+            {/* Traducción dinámica del título principal */}
+            {language === 'es' ? 'Ingeniería' : 'Pixel-Perfect'}
+            <br />
             <span className="bg-gradient-to-r from-accent-cian to-accent-violet bg-clip-text text-transparent">
-             Pixel-Perfect
+              {language === 'es' ? 'Pixel-Perfect' : 'Engineering'}
             </span>
           </h1>
+
           <p className="text-lg text-gray-400 mb-10 max-w-lg leading-relaxed">
-           Transformo ideas complejas en arquitecturas de alto rendimiento. Experto en React, Next.js y WordPress Avanzado.
-           </p>
-<p className="text-md text-gray-400 mb-10 max-w-lg leading-relaxed border-l-2 border-accent-cian/30 pl-4">
-            Casi 6 años de experiencia liderando equipos multidisciplinarios y optimizando el Core Web Vitals para productos digitales de escala internacional.
+            {t.hero_description}
           </p>
+
+          <p className="text-md text-gray-400 mb-10 max-w-lg leading-relaxed border-l-2 border-accent-cian/30 pl-4">
+            {t.hero_subdescription}
+          </p>
+
           <div className="flex flex-wrap gap-4">
             <a href="#proyectos" className="px-8 py-4 bg-gradient-to-r from-accent-cian to-accent-violet rounded-full text-white font-bold shadow-lg shadow-accent-cian/20 hover:scale-105 transition-all">
-              Ver Proyectos
+              {t.hero_cta_projects}
             </a>
             <a href="#contacto" className="px-8 py-4 bg-white/5 border border-white/10 rounded-full text-white font-bold hover:bg-white/10 transition-all">
-              Hablemos
+              {t.hero_cta_talk}
             </a>
           </div>
         </motion.div>
@@ -50,7 +59,6 @@ export default function Hero() {
           transition={{ duration: 1 }}
           className="relative flex justify-center"
         >
-          {/* Animación de Flotación */}
           <motion.div
             animate={{
               y: [0, -30, 0],
@@ -62,17 +70,14 @@ export default function Hero() {
             }}
             className="relative w-72 md:w-full max-w-[450px]"
           >
-            {/* Resplandor detrás de la imagen */}
             <div className="absolute inset-0 bg-accent-cian/20 blur-[80px] rounded-full animate-pulse" />
             
-            {/* IMPORTANTE: La ruta lleva "/" al inicio para leer desde la carpeta public */}
             <img 
               src="/astronauta-removebg-preview.png" 
-              alt="" 
+              alt="Astronauta Antonio.dev" 
               className="relative z-10 w-full h-auto drop-shadow-[0_35px_35px_rgba(34,211,238,0.3)]"
             />
 
-            {/* Elemento Decorativo: "Badge" Flotante */}
             <motion.div
               animate={{ x: [0, 10, 0], y: [0, 15, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -80,7 +85,7 @@ export default function Hero() {
             >
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 bg-green-500 rounded-full animate-ping" />
-                <span className="text-xs font-mono text-gray-300">Status: Coding...</span>
+                <span className="text-xs font-mono text-gray-300">{t.impact_status}</span>
               </div>
             </motion.div>
           </motion.div>
@@ -93,7 +98,9 @@ export default function Hero() {
         transition={{ duration: 2, repeat: Infinity }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500"
       >
-        <span className="text-[10px] uppercase tracking-[0.2em]">Deslizar</span>
+        <span className="text-[10px] uppercase tracking-[0.2em]">
+          {language === 'es' ? 'Deslizar' : 'Scroll'}
+        </span>
         <div className="w-[1px] h-12 bg-gradient-to-b from-accent-cian to-transparent" />
       </motion.div>
     </section>

@@ -1,29 +1,33 @@
 import { motion } from "framer-motion";
-
-const stats = [
-  { 
-    label: "Años de Experiencia", 
-    value: "6+", 
-    description: "Desarrollando arquitecturas de alto rendimiento." 
-  },
-  { 
-    label: "Proyectos Mensuales", 
-    value: "60+", 
-    description: "Entregados bajo estándares de calidad senior." 
-  },
-  { 
-    label: "Liderazgo Técnico", 
-    value: "18", 
-    description: "Especialistas coordinados en equipos multidisciplinarios." 
-  },
-  { 
-    label: "Nivel de Inglés", 
-    value: "B2", 
-    description: "Competencia profesional completa para entornos remotos." 
-  }
-];
+import { useLanguage } from "../LanguageContext"; // 1. Importamos el hook
 
 export default function Stats() {
+  const { t } = useLanguage(); // 2. Extraemos las traducciones
+
+  // 3. Movemos el array dentro para que sea dinámico
+  const stats = [
+    { 
+      label: t.stats_exp_title, 
+      value: t.stats_exp_years, 
+      description: t.stats_exp_desc 
+    },
+    { 
+      label: t.stats_projects_title, 
+      value: t.stats_projects_count, 
+      description: t.stats_projects_desc 
+    },
+    { 
+      label: t.stats_leadership_title || "Liderazgo Técnico", 
+      value: "18", 
+      description: t.stats_leadership_desc || "Especialistas coordinados en equipos multidisciplinarios." 
+    },
+    { 
+      label: t.stats_english_title || "Nivel de Inglés", 
+      value: "B2", 
+      description: t.stats_english_desc || "Competencia profesional completa para entornos remotos." 
+    }
+  ];
+
   return (
     <section className="relative z-10 py-20 bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto px-6">

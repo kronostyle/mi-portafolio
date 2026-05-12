@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
-import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa"; // Necesitarás react-icons
+import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import { useLanguage } from "../LanguageContext";
 
 export default function Footer() {
+  const { t, language } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -18,11 +20,11 @@ export default function Footer() {
               Antonio R. <span className="text-accent-cian">Azaf N.</span>
             </h2>
             <p className="text-gray-500 text-sm tracking-widest uppercase font-mono">
-              Systems Engineer | Front End Lead
+              {t.contact_footer_lead}
             </p>
           </div>
 
-          {/* Centro: Enlaces Sociales con Impacto */}
+          {/* Centro: Enlaces Sociales */}
           <div className="flex gap-6">
             <motion.a
               href="https://www.linkedin.com/in/antonio-azaf-679222355"
@@ -58,13 +60,15 @@ export default function Footer() {
         {/* Mensaje de Cierre y Copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 gap-4">
           <p className="text-gray-600 text-xs">
-            © {currentYear} — Diseñado con precisión para el futuro digital.
+            © {currentYear} — {language === 'es' 
+              ? 'Diseñado con precisión para el futuro digital.' 
+              : 'Precisely designed for the digital future.'}
           </p>
           
           <div className="flex gap-4">
             <span className="flex items-center gap-2 text-gray-500 text-xs">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              Disponible para nuevos retos
+              {t.contact_availability}
             </span>
           </div>
         </div>

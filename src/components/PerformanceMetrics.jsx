@@ -1,13 +1,18 @@
 import { motion } from "framer-motion";
-
-const metrics = [
-  { label: "Performance", value: 99, color: "text-green-500" },
-  { label: "Accessibility", value: 100, color: "text-green-500" },
-  { label: "Best Practices", value: 100, color: "text-green-500" },
-  { label: "SEO", value: 98, color: "text-green-500" },
-];
+import { useLanguage } from "../LanguageContext";
+import { useMemo } from "react";
 
 export default function PerformanceMetrics() {
+  const { t, language } = useLanguage();
+
+  // Memorizamos las métricas para que se traduzcan los labels al cambiar el idioma
+  const metrics = useMemo(() => [
+    { label: t.stats_performance, value: 99, color: "text-green-500" },
+    { label: t.stats_accessibility, value: 100, color: "text-green-500" },
+    { label: t.stats_best_practices, value: 100, color: "text-green-500" },
+    { label: t.stats_seo, value: 98, color: "text-green-500" },
+  ], [t]);
+
   return (
     <section className="py-24 bg-[#0a0a0a] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
@@ -17,7 +22,7 @@ export default function PerformanceMetrics() {
           <div className="grid grid-cols-2 gap-8 md:gap-12 justify-items-center">
             {metrics.map((metric, index) => (
               <motion.div 
-                key={index}
+                key={`${language}-${index}`} // Forzamos re-render al cambiar idioma
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
@@ -25,7 +30,6 @@ export default function PerformanceMetrics() {
                 className="flex flex-col items-center gap-4 w-full"
               >
                 <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-gray-800 flex items-center justify-center bg-white/5">
-                  {/* Círculo de progreso animado */}
                   <svg className="absolute inset-0 w-full h-full -rotate-90">
                     <circle
                       cx="50%"
@@ -48,45 +52,41 @@ export default function PerformanceMetrics() {
             ))}
           </div>
 
-          {/* Texto Explicativo Técnico */}
+          {/* Texto Explicativo Técnico Traducido */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-white mb-6">
-              Optimización <span className="text-accent-cian underline decoration-accent-violet/30">sin compromisos</span>.
+              {language === 'es' ? 'Optimización ' : 'Uncompromising '}
+              <span className="text-accent-cian underline decoration-accent-violet/30">
+                {language === 'es' ? 'sin compromisos' : 'optimization'}
+              </span>.
             </h2>
+            
             <p className="text-gray-400 text-lg mb-6 leading-relaxed">
-              Como Ingeniero de Sistemas con experiencia en <strong>liderazgo técnico</strong>, implemento arquitecturas que garantizan que cada proyecto cumpla con los estándares más estrictos de Google.
+              {t.impact_desc}
             </p>
-            {/* Texto Explicativo Técnico Corregido */}
-<ul className="space-y-4">
-  <li className="flex items-start gap-3 text-gray-300">
-    <span className="text-accent-cian mt-1">▹</span> 
-    <p>
-      Reducción de carga en servidor mediante refinamiento de routing y endpoints eficientes.
-    </p>
-  </li>
-  <li className="flex items-start gap-3 text-gray-300">
-    <span className="text-accent-cian mt-1">▹</span> 
-    <p>
-      Aseguramiento de métricas <span className="text-white font-bold whitespace-nowrap">Core Web Vitals</span> para mejorar el posicionamiento orgánico.
-    </p>
-  </li>
-  <li className="flex items-start gap-3 text-gray-300">
-    <span className="text-accent-cian mt-1">▹</span> 
-    <p>
-      Uso de <span className="text-white font-bold whitespace-nowrap">Jest</span> para garantizar la integridad de los componentes en producción.
-    </p>
-  </li>
-  <li className="flex items-start gap-3 text-gray-300">
-    <span className="text-accent-cian mt-1">▹</span> 
-    <p>
-      Desarrollo de funcionalidades personalizadas extendiendo las capacidades de WordPress.
-    </p>
-  </li>
-</ul>
+
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3 text-gray-300">
+                <span className="text-accent-cian mt-1">▹</span> 
+                <p>{t.impact_point1}</p>
+              </li>
+              <li className="flex items-start gap-3 text-gray-300">
+                <span className="text-accent-cian mt-1">▹</span> 
+                <p>{t.impact_point2}</p>
+              </li>
+              <li className="flex items-start gap-3 text-gray-300">
+                <span className="text-accent-cian mt-1">▹</span> 
+                <p>{t.impact_point3}</p>
+              </li>
+              <li className="flex items-start gap-3 text-gray-300">
+                <span className="text-accent-cian mt-1">▹</span> 
+                <p>{t.impact_point4}</p>
+              </li>
+            </ul>
           </motion.div>
 
         </div>
